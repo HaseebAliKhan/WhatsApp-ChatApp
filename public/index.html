@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whatsapp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/4d39ebf308.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+   
+    <!-- <script src="firebase.init.js"></script> -->
+    <script >
+        var firebaseConfig = {
+          apiKey: "AIzaSyBf62P0kSVMZP1Si0jpl-cdsLTWdbeosVI",
+          authDomain: "chat-app-13cb6.firebaseapp.com",
+          databaseURL: "https://chat-app-13cb6.firebaseio.com",
+          projectId: "chat-app-13cb6",
+          storageBucket: "chat-app-13cb6.appspot.com",
+          messagingSenderId: "647454092709",
+          appId: "1:647454092709:web:dbc2dbfe55e30d18c88c4c"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>   
+    
+</head>
+<body>
+    <span class="top"></span>
+    <div class="container-fluid bg-white chatbox shadow-lg rounded">
+        <div class="row h-100">
+            <div class="col-2 col-sm-2  col-md-3 h-100  pr-0 pl-0 " id="side-1">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <div class="row">  
+                            <div class="col-10 col-sm-10 col-md-10">
+                                <img id="imgProfile" src="PP.png"  class="profile-pic rounded-circle">
+                            </div>
+                            <div class="col-1 col-sm-1 col-md-1 ">
+                                <div class="dropleft">
+                                    <span class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-v icon" style="cursor: pointer;float:right" onclick=""></i>
+                                    </span>
+                                    <div class="dropdown-menu">
+                                        <a href="#" class="dropdown-item" id="lnkNewChat" onclick="PopulateFriendList()" data-toggle="modal" data-target="#modalFriendList">New Chat</a>
+                                        <a href="#" id="lnkSignIn" onclick="signIn()" class="dropdown-item">Sign In</a>
+                                        <a href="#" id="lnkSignOut" onclick="signOut()" class="dropdown-item">Sign Out</a>
+                                    </div>
+                                    <div class="modal fade" id="modalFriendList">
+                                        <div class="modal-dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            Friend List
+                                                            <span class="close" data-dismiss="modal" style="cursor: pointer;">&times;</span>
+                                                        </div>
+                                                        <ul class="lsit-group list-group-flush" id="lstFriend">
+    
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                    <ul class="list-group list-group-flush" id="lstChat">
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-10 col-sm-10 col-md-9 pr-0 pl-0 pad" id="side-2">
+                <div id="chatPanel" class="card " style="display: none;">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-1 col-sm-1 col-md-1 col-lg-1">
+                                <i class="fas fa-list  d-md-none" style="cursor: pointer;" onclick="showChatList()"></i>
+                            </div>
+                            <div class="col- col-sm- col-md- ">
+                                <img src="PP.png" id="imgChat" class="profile-pic rounded-circle" style="float: left;">
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-5 ">
+                                <div class="name" id="divChatName" >Any Name</div>
+                                <div class="under-name" id="divChatseen" >last seen 22/Sep/2020</div>
+                            </div>
+                            <div class="col-8 col-sm-8 col-md-5  icon ">
+                                <i class="fas fa-ellipsis-v ml-4" style="float: right;"></i>
+                                <i class="fas fa-paperclip ml-4" style="float: right;"></i>
+                                <i class="fas fa-search ml-4" style="float: right;"></i>
+                            </div>
+                        </div>
+                        </div>
+                        <div id="messages" class="card-body">
+                            
+                        
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-2 col-md-1">
+                                    <i class="far fa-grin fa-2x"></i>
+                                </div>
+                                <div class="col-8 col-md-10">
+                                    <input id="txtMessage"  type="text" placeholder="Type Text" class="form-control form-rounded" >
+                                </div>
+                                <div class="col-2 col-md-1">
+                                    <i class="fas fa-microphone fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divStart" class="text-center">
+                        <i class="fas fa-comments mt-5" style="font-size: 250px;"></i>
+                        <h2 class="mt-3">Select your friend from the list and start chating</h2>
+                        <button onclick="signIn()" class="btn btn-primary">Sign In</button>
+                        <button onclick="signOut()" class="btn btn-primary">Sign Out</button>
+                    </div>
+                    
+    
+            </div>
+        </div>
+        
+    </div>
+    
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="chat.js"></script>
+    
+    
+    
+
+
+</body>
+</html>
