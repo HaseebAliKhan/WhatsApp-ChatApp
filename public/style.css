@@ -57,7 +57,8 @@ body {
     padding: 0;
 }
 .receive{
-    background-color: rgb(188, 241, 135);
+    background-color: whitesmoke;
+    
     border-top-right-radius: 1rem;
     border-top-left-radius: 0rem;
     border-bottom-left-radius: 1rem;
@@ -79,7 +80,7 @@ body {
     
 }
 .send{
-    background-color: whitesmoke;
+    background-color: rgb(188, 241, 135);
     border-top-right-radius: 0rem;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
@@ -97,3 +98,109 @@ body {
 .dropdown-toggle::before {
     display: none !important;
 }
+@media (max-width: 2560px) and (max-height: 2455px) {
+    .card{
+        height: 98vh !important;
+    }
+}
+@media (max-width: 1920px) and (max-height: 1200px) {
+    .card{
+        height: 95vh !important;
+    }
+}
+@media (max-width: 1440px) and (max-height: 1200px) {
+    .card{
+        height: 95vh !important;
+    }
+}
+@media (max-width: 1024px) and (max-height: 982px) {
+    .card{
+        height: 96vh !important;
+    }
+}
+@media (max-width: 768px) and (max-height: 850px) {
+    .card{
+        height: 95vh !important;
+    }
+}
+@media (max-width: 768px) and (max-height: 700px) {
+    .card{
+        height: 94vh !important;
+    }
+}
+@media (max-width: 768px) and (max-height: 605px) {
+    .card{
+        height: 93vh !important;
+    }
+}
+@media (max-width: 768px) and (max-height: 605px) {
+    .card{
+        height: 93vh !important;
+    }
+}
+@media (max-width: 425px) and (max-height: 850px) {
+    .card{
+        height: 95vh !important;
+    }
+}
+@media (max-width: 425px) and (max-height: 700px) {
+    .card{
+        height: 94vh !important;
+    }
+}
+@media (max-width: 425px) and (max-height: 605px) {
+    .card{
+        height: 93vh !important;
+    }
+}
+@media (max-width: 425px) and (max-height: 605px) {
+    .card{
+        height: 93vh !important;
+    }
+}
+@media (max-width: 375px) and (max-height: 850px) {
+    .card{
+        height: 95vh !important;
+    }
+}
+@media (max-width: 375px) and (max-height: 700px) {
+    .card{
+        height: 94vh !important;
+    }
+}
+@media (max-width: 375px) and (max-height: 605px) {
+    .card{
+        height: 93vh !important;
+    }
+}
+@media (max-width: 375px) and (max-height: 605px) {
+    .card{
+        height: 93vh !important;
+    }
+}
+@media (max-width: 320px) and (max-height: 850px) {
+    .card{
+        height: 95vh !important;
+    }
+}
+@media (max-width: 320px) and (max-height: 700px) {
+    .card{
+        height: 94vh !important;
+    }
+}
+@media (max-width: 320px) and (max-height: 605px) {
+    .card{
+        height: 93vh !important;
+    }
+}
+@media (max-width: 320px) and (max-height: 605px) {
+    .card{
+        height: 93vh !important;
+    }
+}
+
+
+
+
+
+
